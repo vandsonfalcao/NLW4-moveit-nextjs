@@ -50,10 +50,11 @@ export function ChallengesProvider({
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
   ////////////////////////////////////////// EFFECTS
+  //GET PERMISSION
   useEffect(() => {
     Notification.requestPermission();
   }, []);
-
+  //SAVE PROGRESS
   useEffect(() => {
     Cookie.set("level", String(level));
     Cookie.set("challengesCompleted", String(challengesCompleted));
@@ -69,7 +70,7 @@ export function ChallengesProvider({
   function closeLevelUpModal() {
     setIsLevelUpModalOpen(false);
   }
-
+  //NOTIFICATION
   function startNewChallenge() {
     new Audio("/notification.mp3").play();
 

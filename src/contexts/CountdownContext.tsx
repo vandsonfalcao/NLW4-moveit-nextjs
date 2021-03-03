@@ -7,6 +7,7 @@ import {
 } from "react";
 import { ChallengesContext } from "./ChallengesContexts";
 
+////////////////////////////////////////// TYPES
 interface CountdownContextData {
   minutes: number;
   seconds: number;
@@ -25,14 +26,17 @@ export const CountdownContext = createContext({} as CountdownContextData);
 let countdownTimeout: NodeJS.Timeout;
 
 export function CountdownProvider({ children }: CountdownProviderProps) {
+  //Configurar tempo do ciclo
+  let ciclo = 0.05;
+
   const { startNewChallenge } = useContext(ChallengesContext);
-  const [time, setTime] = useState(25 * 60);
+  const [time, setTime] = useState(ciclo * 60);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
-
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
+  ////////////////////////////////////////// FUNCTIONS
   function starCountdown() {
     setIsActive(true);
   }
@@ -41,9 +45,11 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     clearTimeout(countdownTimeout);
     setIsActive(false);
     setHasFinished(false);
-    setTime(25 * 60);
+    setTime(ciclo * 60);
   }
 
+  ////////////////////////////////////////// EFFECTS
+  //TIMER
   useEffect(() => {
     if (isActive && time > 0) {
       countdownTimeout = setTimeout(() => {
