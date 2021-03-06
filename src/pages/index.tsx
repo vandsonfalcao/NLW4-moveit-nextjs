@@ -1,5 +1,5 @@
-import Head from "next/head";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { CompletedChallenges } from "../componets/CompletedChallenges";
 import { Countdown } from "../componets/Countdown";
 import { ExperienceBar } from "../componets/ExperienceBar";
@@ -16,7 +16,7 @@ interface HomeProps {
   challengeCompleted: number;
 }
 
-export default function Home(props: HomeProps) {
+export default function Index(props: HomeProps) {
   return (
     <ChallengesProvider
       level={props.level}
@@ -27,23 +27,25 @@ export default function Home(props: HomeProps) {
         <div className={styles.containerBar}>
           <HomeBar />
         </div>
-        <div className={styles.containerPage}>
-          <Head>
-            <title>Home | move.it</title>
-          </Head>
-          <ExperienceBar />
-          <CountdownProvider>
-            <section>
-              <div>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
+        <div>
+          <div className={styles.containerPage}>
+            <Head>
+              <title>Home | move.it</title>
+            </Head>
+            <ExperienceBar />
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </section>
+            </CountdownProvider>
+          </div>
         </div>
       </div>
     </ChallengesProvider>
