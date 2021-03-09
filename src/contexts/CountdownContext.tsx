@@ -27,7 +27,7 @@ let countdownTimeout: NodeJS.Timeout;
 
 export function CountdownProvider({ children }: CountdownProviderProps) {
   //Configurar tempo do ciclo
-  let ciclo = 0.05; //0.05;
+  let ciclo = 25; //0.05;
 
   const { startNewChallenge } = useContext(ChallengesContext);
   const [time, setTime] = useState(ciclo * 60);
